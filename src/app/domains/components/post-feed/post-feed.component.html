@@ -1,0 +1,67 @@
+<div *ngFor="let post of publicaciones">
+  <div class="flex items-start space-x-4 p-4 bg-stone-700 rounded-lg mb-4">
+    <img
+      src="canserbero.jpg"
+      alt="User Avatar"
+      class="rounded-full w-10 h-10"
+    />
+
+    <div class="flex-1">
+      <div class="flex justify-between items-center">
+        <div class="text-sm">
+          <span class="font-bold">{{ post.usuario }}</span> ·
+          {{ calcularTiempoTranscurrido(post.tiempo) }} ·
+          <span *ngIf="post.visibilidad === 'Público'">🌍</span>
+          <span *ngIf="post.visibilidad === 'Privado'">🔒</span>
+        </div>
+        <button class="text-gray-500 hover:text-gray-300">...</button>
+      </div>
+
+      <div *ngIf="post.imagenUrl && post.imagenUrl.length === 1" class="mt-2">
+        <img
+          [src]="post.imagenUrl[0]"
+          alt="Imagen del post"
+          class="rounded-lg w-full h-[35vh] object-cover shadow-lg"
+        />
+      </div>
+
+      <div *ngIf="post.imagenUrl && post.imagenUrl.length > 1" class="mt-2 flex flex-wrap gap-4">
+        <div *ngFor="let imageUrl of post.imagenUrl" class="flex-1">
+          <img
+            [src]="imageUrl"
+            alt="Imagen del post"
+            class="rounded-lg w-full h-[35vh] object-cover shadow-lg"
+          />
+        </div>
+      </div>
+
+      <div class="content-container mt-4" [ngClass]="{ 'show-more': post.showMore }">
+        <p class="content">{{ post.contenido }}</p>
+        <a  *ngIf="shouldShowSeeMore(post.contenido)" href="#" class="see-more" (click)="toggleContent($event, post)">
+          {{ post.showMore ? 'See less' : 'See more' }}
+        </a>
+      </div>
+
+      <hr class="mt-6"/>
+      <div class="flex items-center justify-between space-x-2 text-gray-500 mt-2">
+        <button
+          class="flex items-center mr-6 text-white font-bold "
+          (click)="likePublicacion(post)"
+        >
+          <i class="mr-1 "><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAABEElEQVR4nO2UMU4CQRSGPyMRww3wBB5CajtDOACBwtrCwlqDsbWw5ATcgJBQQGiUG9BAYWWMoSQWj0zyk2xs2NmFfYX7Jy87s9k/8/0zOw9KlcqmCrAAvoFH4JSC1QEsUQGi8PQG9PX89Ei/AM4Su1B4+g5wofGXR/oK0NJ86JE+6FXzBxzSB8317poDyvbULn3QOsX3pn7xnLZf2J7apT9PuXiynmIA/irPdbuKuS12BIC6vD9eADfyjr0AevK+eAGM5G16AJzo7E2tu3CAS/lWaQ12YIC2fAMvgDf57rMAzIBpToB3+RpZAKbAJAdAFdgAv0AtC0BSsQDh77+V5yPChx2hul4AS+AuZvFS/09bP1a9IhIY450AAAAASUVORK5CYII=" style="filter: invert(1) brightness(2);">
+          </i>{{ post.likes }} Likes
+        </button>
+        <span class="flex items-center mr-6 text-white font-bold "
+          ><i class="mr-1"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 50 50">
+            <path d="M 25 4.0625 C 12.414063 4.0625 2.0625 12.925781 2.0625 24 C 2.0625 30.425781 5.625 36.09375 11 39.71875 C 10.992188 39.933594 11 40.265625 10.71875 41.3125 C 10.371094 42.605469 9.683594 44.4375 8.25 46.46875 L 7.21875 47.90625 L 9 47.9375 C 15.175781 47.964844 18.753906 43.90625 19.3125 43.25 C 21.136719 43.65625 23.035156 43.9375 25 43.9375 C 37.582031 43.9375 47.9375 35.074219 47.9375 24 C 47.9375 12.925781 37.582031 4.0625 25 4.0625 Z M 25 5.9375 C 36.714844 5.9375 46.0625 14.089844 46.0625 24 C 46.0625 33.910156 36.714844 42.0625 25 42.0625 C 22.996094 42.0625 21.050781 41.820313 19.21875 41.375 L 18.65625 41.25 L 18.28125 41.71875 C 18.28125 41.71875 15.390625 44.976563 10.78125 45.75 C 11.613281 44.257813 12.246094 42.871094 12.53125 41.8125 C 12.929688 40.332031 12.9375 39.3125 12.9375 39.3125 L 12.9375 38.8125 L 12.5 38.53125 C 7.273438 35.21875 3.9375 29.941406 3.9375 24 C 3.9375 14.089844 13.28125 5.9375 25 5.9375 Z" fill="white"></path>
+          </svg>
+          </i
+          >{{ post.comentarios.length }} comments</span
+        >
+        <span class="flex items-center text-white font-bold "
+          ><i class="mr-1">🔄</i>{{ post.compartidos }} shares</span
+        >
+      </div>
+    </div>
+  </div>
+</div>

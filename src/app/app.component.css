@@ -1,0 +1,92 @@
+.top-5 {
+  position: sticky;
+  top: 20px; /* Ajusta el espacio desde el top de la ventana */
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.transition-transform {
+  transition: transform 0.7s ease-in-out;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+/*  */
+
+
+.content {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número de líneas visibles antes de truncar */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+
+.carousel-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.content-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+}
+
+.show-more .content {
+  -webkit-line-clamp: unset; /* Muestra todo el contenido */
+}
+
+.carousel-slide {
+  flex-shrink: 0;
+  width: calc(100% / 15); /* 100% dividido por itemsPerSlide */
+  box-sizing: border-box;
+}
+
+.carousel-image {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+.show-more .see-more::after {
+  content: '';
+}
+
+.whitespace-nowrap {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.inline-block {
+  flex: 1 0 calc(100% / 5);
+}
+.translate-x-full {
+  transform: translateX(-100%);
+}
+.translate-x-2full {
+  transform: translateX(-200%);
+}

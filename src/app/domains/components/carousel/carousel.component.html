@@ -1,0 +1,23 @@
+<div class="top-5 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl ml-4 sm:ml-6 md:ml-8 lg:ml-10 bg-stone-800 p-4 mt-16 sm:mt-24 md:mt-32 lg:mt-64 mb-2 rounded-lg">
+  <h3 class="text-lg sm:text-xl font-bold mb-3 text-center py-2 bg-stone-600 rounded-3xl">Top 5</h3>
+  <h1 class="text-md sm:text-lg font-bold text-center text-green-500 mb-4">{{ carouselTitle }}</h1>
+
+  <div class="relative overflow-hidden">
+    <div class="space-y-2 transition-transform duration-500 ease-in-out">
+      <div *ngFor="let image of visibleImages" class="flex items-center w-full flex-shrink-0 px-2 sm:px-3 md:px-4 justify-between bg-stone-600 rounded-3xl">
+        <div class="flex items-center py-2 sm:py-3">
+          <h1 class="ml-2 sm:ml-3 mr-2">{{ image.id }}</h1>
+          <img [src]="image.src" alt="User Avatar" class="rounded-full w-6 sm:w-8 h-6 sm:h-8" />
+          <span class="ml-2 sm:ml-3">{{ image.name }}</span>
+        </div>
+        <span class="text-pink-500 font-bold">{{ image.stars }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slider controls -->
+  <div class="flex justify-center mt-4">
+    <button (click)="prev()" class="bg-stone-600 px-2 sm:px-3 py-1 sm:py-2 rounded-lg mr-2 text-sm sm:text-base">Prev</button>
+    <button (click)="next()" class="bg-stone-600 px-2 sm:px-3 py-1 sm:py-2 rounded-lg text-sm sm:text-base">Next</button>
+  </div>
+</div>
